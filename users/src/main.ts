@@ -11,6 +11,6 @@ async function bootstrap() {
     },
   );
   await app.listen();
-  console.log('👤 Users microservice corriendo en 3001');
+  console.log('👤 Users microservice en el  en 3001');
 }
 bootstrap();
