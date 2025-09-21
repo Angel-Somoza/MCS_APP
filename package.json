@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "@nestjs/microservices": "^11.1.6"
+    "@nestjs/microservices": "^11.1.6",
+    "@nestjs/platform-express": "^11.1.6"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.6",
+    "@types/jest": "^30.0.0"
   }
 }

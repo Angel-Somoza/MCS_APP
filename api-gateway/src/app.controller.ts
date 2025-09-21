@@ -7,6 +7,7 @@ export class AppController {
     @Inject('USERS_SERVICE') private readonly usersClient: ClientProxy,
     @Inject('COURSES_SERVICE') private readonly coursesClient: ClientProxy,
     @Inject('PRODUCTS_SERVICE') private readonly productsClient: ClientProxy,
+    @Inject('ESTUDIANTES_SERVICE') private readonly estudiantesClient: ClientProxy,
     
   ) {}
 
@@ -23,5 +24,12 @@ export class AppController {
   @Get('products')
   getProducts() {
     return this.productsClient.send({ cmd: 'get_products' }, {});
+
+ }
+
+
+  @Get('estudiantes')
+  getEstudiantes() {
+    return this.estudiantesClient.send({ cmd: 'get_estudiantes' }, {});
   }
 }
