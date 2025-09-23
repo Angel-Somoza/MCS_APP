@@ -12,12 +12,12 @@ import { Estudiante } from './entity/estudiante.entity';
   port: 1433,
   username: 'sa',
   password: '1234',
-  database: 'Escuela', // o la base que estés usando
+  database: 'Escuela',
   entities: [Estudiante],
-  synchronize: false, // 👈 crea/actualiza tablas automáticamente (solo para dev)
+  synchronize: false, 
   options: {
-        encrypt: false, // necesario si usas SQL Server local
-        trustServerCertificate: true, // importante para desarrollo
+        encrypt: false, 
+        trustServerCertificate: true, 
       },
     }),
     TypeOrmModule.forFeature([Estudiante]),
