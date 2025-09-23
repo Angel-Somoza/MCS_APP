@@ -11,6 +11,6 @@ async function bootstrap() {
     },
   );
   await app.listen();
-  console.log('📚 Courses microservice corriendo en 3002');
+  console.log('📚 Courses microservice corriendo en puerto 3002');
 }
 bootstrap();
