@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { Course } from './entity/course.entity';
 
 @Controller()
-export class AppController {
+export class CoursesController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern({ cmd: 'get_courses' })
