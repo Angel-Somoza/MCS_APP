@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { CoursesService } from './app.service';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class CoursesController {
+  constructor(private readonly appService: CoursesService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @MessagePattern({ cmd: 'get_courses' })
+  getUsers() {
+    return this.appService.findAll();
   }
 }
