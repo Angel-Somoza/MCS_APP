@@ -1,20 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { Controller, Get, Param } from '@nestjs/common';
 import { EstudiantesService } from './app.service';
 
-@Controller()
-export class EstudiantesController {   // 👈 NOMBRE CORRECTO
+@Controller('estudiantes')
+export class EstudiantesController {
   constructor(private readonly estudiantesService: EstudiantesService) {}
 
-  // Para Gateway (TCP)
-  @MessagePattern({ cmd: 'get_estudiantes' })
-  async getEstudiantesRPC() {
-    return this.estudiantesService.findAll();
+  @Get()
+  async getAll() {
+    return await this.estudiantesService.findAll();
   }
 
-  // Para pruebas directas (HTTP)
-  @Get('estudiantes')
-  async getEstudiantesHttp() {
-    return this.estudiantesService.findAll();
+  @Get(':id')
+  async getOne(@Param('id') id: string) {
+    return await this.estudiantesService.findOne(Number(id));
   }
 }
