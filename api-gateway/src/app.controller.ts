@@ -2,11 +2,15 @@
 import { Controller, Get, Post, Put, Delete, Inject, Body, Param  } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
+
 @Controller()
 export class AppController {
   constructor(
     @Inject('COURSES_SERVICE') private readonly coursesClient: ClientProxy,
     @Inject('PROFESORES_SERVICE') private readonly profesoresCliente: ClientProxy,
+    @Inject('ESTUDIANTES_SERVICE') private readonly estudiantesClient: ClientProxy,
+    
+
   ) {}
   
 //Courses
@@ -54,4 +58,32 @@ export class AppController {
   deleteProfesor(@Param('id') id: string) {
     return this.profesoresCliente.send({ cmd: 'delete_profesor' }, id);
   }
+  
+  //estudiantes
+    @Get('estudiantes')
+  getEstudiantes() {
+    return this.estudiantesClient.send({ cmd: 'get_estudiantes' }, {});
+  }
+
+  @Get('estudiantes/:id')
+  getEstudiante(@Param('id') id: string) {
+    return this.estudiantesClient.send({ cmd: 'get_estudiante' }, +id);
+  }
+
+  @Post('estudiantes')
+  createEstudiante(@Body() data: any) {
+    return this.estudiantesClient.send({ cmd: 'create_estudiante' }, data);
+  }
+
+  @Put('estudiantes/:id')
+  updateEstudiante(@Param('id') id: string, @Body() data: any) {
+    return this.estudiantesClient.send({ cmd: 'update_estudiante' }, { id: +id, estudiante: data });
+  }
+
+  @Delete('estudiantes/:id')
+  deleteEstudiante(@Param('id') id: string) {
+    return this.estudiantesClient.send({ cmd: 'delete_estudiante' }, +id);
+
+  }
+
 }
