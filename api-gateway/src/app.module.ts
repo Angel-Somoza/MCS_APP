@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     ClientsModule.register([
-      { name: 'COURSES_SERVICE', transport: Transport.TCP, options: { host: 'localhost', port: 3002 } },
+      { name: 'COURSES_SERVICE', transport: Transport.TCP, options: { host: 'courses-service', port: 3002 } },
       { name: 'PROFESORES_SERVICE', transport: Transport.TCP, options: { host: 'localhost', port: 3005 } },
       { name: 'ESTUDIANTES_SERVICE', transport: Transport.TCP, options: { host: 'localhost', port: 3004 } },
     ]),
