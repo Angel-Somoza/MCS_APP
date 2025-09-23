@@ -1,5 +1,6 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+
 
 @Controller()
 export class AppController {
@@ -28,8 +29,28 @@ export class AppController {
  }
 
 
-  @Get('estudiantes')
+    @Get('estudiantes')
   getEstudiantes() {
     return this.estudiantesClient.send({ cmd: 'get_estudiantes' }, {});
+  }
+
+  @Get('estudiantes/:id')
+  getEstudiante(@Param('id') id: string) {
+    return this.estudiantesClient.send({ cmd: 'get_estudiante' }, +id);
+  }
+
+  @Post('estudiantes')
+  createEstudiante(@Body() data: any) {
+    return this.estudiantesClient.send({ cmd: 'create_estudiante' }, data);
+  }
+
+  @Put('estudiantes/:id')
+  updateEstudiante(@Param('id') id: string, @Body() data: any) {
+    return this.estudiantesClient.send({ cmd: 'update_estudiante' }, { id: +id, estudiante: data });
+  }
+
+  @Delete('estudiantes/:id')
+  deleteEstudiante(@Param('id') id: string) {
+    return this.estudiantesClient.send({ cmd: 'delete_estudiante' }, +id);
   }
 }
