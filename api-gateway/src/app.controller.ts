@@ -27,7 +27,7 @@ export class AppController {
     return this.productsClient.send({ cmd: 'get_products' }, {});
 
  }
-
+//estudiantes
 
     @Get('estudiantes')
   getEstudiantes() {
